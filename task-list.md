@@ -4,7 +4,7 @@
 
 ### Front end
 
-- [] Create basic folder structure and files: public (html, js, css)
+- [x] Create basic folder structure and files: public (html, js, css)
 
 #### Index.html
 
@@ -49,8 +49,8 @@
 
 ### Back end
 
-- [] NPM install + add dependencies
-- [] Create index.js
+- [x] NPM install + add dependencies
+- [x] Create index.js
 - [] Create database
 
 #### index.js
