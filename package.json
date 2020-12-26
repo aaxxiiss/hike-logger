@@ -1,0 +1,28 @@
+{
+  "name": "hike-logger",
+  "version": "1.0.0",
+  "description": "Application for logging hikes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaxxiiss/hike-logger.git"
+  },
+  "keywords": [
+    "javascript",
+    "node.js",
+    "express.js",
+    "geolocation"
+  ],
+  "author": "Jukka Isokoski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aaxxiiss/hike-logger/issues"
+  },
+  "homepage": "https://github.com/aaxxiiss/hike-logger#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
