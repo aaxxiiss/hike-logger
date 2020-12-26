@@ -13,7 +13,7 @@
 
 #### Create Journal view
 
-- [] Basic layout of the page
+- [x] Basic layout of the page
 - [] Html form: journey name, description, allowed users, submit, clear
 - [] Front end form validation
 - [] Submitting data to back end in JSON format (override default html request)
@@ -56,7 +56,6 @@
 #### index.js
 
 - [] setup express
-- [] on local host, serve static files of public folder on port (XXXX)
 - [] on local host, listen to (YYYY) for api calls
 - [] YYYY/create-journal : receive JSON
 - [] validate data
@@ -71,6 +70,7 @@
 - [] get data from DB
 - [] send data as JSON
 - [] add ports for development environment (and fallback to localhost)
+- [] on local host, serve static files of public folder on port (XXXX)
 
 #### Other
 
