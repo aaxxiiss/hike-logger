@@ -4,21 +4,21 @@
 
 ### Front end
 
-() Create basic folder structure and files: public (html, js, css)
+- () Create basic folder structure and files: public (html, js, css)
 
 #### Index.html
 
-() link to Create Journal
-() list of created Journals and their Logging and Journey views
+[] link to Create Journal
+[] list of created Journals and their Logging and Journey views
 
 #### Create Journal view
 
-() Basic layout of the page
-() Html form: journey name, description, allowed users, submit, clear
-() Front end form validation
-() Submitting data to back end in JSON format (override default html request)
-() Loading animation while waiting response from back end
-() Confirmation: Journal created with link to Logging view and Journey view
+- () Basic layout of the page
+- () Html form: journey name, description, allowed users, submit, clear
+- () Front end form validation
+  () Submitting data to back end in JSON format (override default html request)
+  () Loading animation while waiting response from back end
+  () Confirmation: Journal created with link to Logging view and Journey view
 
 #### Logging view
 
