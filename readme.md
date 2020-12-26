@@ -23,9 +23,8 @@ Front end is created with plain html, css and javascript.
 
 ### Back end:
 
-1. Static file server with node/express
-2. Dynamic server with node/express to handle API calls and interaction with DB
-3. Data base for storing user data and journals: some Mondo DB variant (?)
+1. Server with node/express: serves static files at port (XXXX) and handles dynamic tasks at port (YYYY) (API calls and interaction with DB)
+2. Data base for storing user data and journals: some Mondo DB variant (?)
 
 ### APIs
 
