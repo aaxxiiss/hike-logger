@@ -70,6 +70,14 @@
 - [] listen to YYYY/journey for journey data requests
 - [] get data from DB
 - [] send data as JSON
+- [] add ports for development environment (and fallback to localhost)
+
+#### Other
+
+- [] add .env and hide API-keys there
+- [] create account to Heroku
+- [] set up Heroku as Production for git
+- [] push app to Production
 
 ## For 1.0.
 
