@@ -17,29 +17,36 @@
 
         <h1>Create a new Journal</h1>
 
-        <form action="">
-            <div class="form-row">
-                <label for="journal-name">Name of the Journal</label>
-                <input id="journal-name" name="name" type="text">
+        <div class="form-container">
+            <form id="journal-form" action="">
+                <div class="form-row">
+                    <label for="journal-name">Name of the Journal</label>
+                    <input id="journal-name" name="name" type="text">
+                </div>
+                <div class="form-row">
+                    <label for="journal-description">Description</label>
+                    <textarea class="description-textarea" id="journal-description" name="description"
+                        type="text"></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="shared-with-users">Share with users</label>
+                    <input id="shared-with-users" name="shared-with" type="text">
+                </div>
+                <div class="form-row buttons-row">
+                    <button id="journal-submit" type="submit" class="btn btn-green-solid">Create Journal!</button>
+                    <button id="journal-reset" type="reset" class="btn btn-green-border">Clear</button>
+                </div>
+            </form>
+            <div id="loading-spinner" class="loading">
+                <img src="images/snowflake.svg" alt="" class="spinner">
             </div>
-            <div class="form-row">
-                <label for="journal-description">Description</label>
-                <textarea id="journal-description" name="description" type="text"></textarea>
-            </div>
-            <div class="form-row">
-                <label for="shared-with-users">Share with users</label>
-                <input id="shared-with-users" name="shared-with" type="text">
-            </div>
-            <div class="form-row">
-                <button>Create Journal!</button>
-            </div>
-        </form>
+        </div>
 
 
 
     </main>
 
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/client.js"></script>
 
 </body>
 
