@@ -20,13 +20,14 @@ app.get('/API/', (req, res) => {
     });
 });
 
+
 function isValidJournal(journal) {
     return journal.name && journal.name.toString().trim() !== '' &&
         journal.description && journal.description.toString().trim() !== '' &&
         journal.sharedWith && journal.sharedWith.toString().trim() !== '';
 }
 
-app.post('/API/journal/', (req, res) => {
+app.post('/API/journals/', (req, res) => {
     if (isValidJournal(req.body)) {
         console.log('is valid');
         const journal = {
@@ -46,4 +47,12 @@ app.post('/API/journal/', (req, res) => {
             message: "Journal data wasn't valid. Please refill the form and trya again."
         });
     }
+});
+
+app.get('/API/journals/', (req, res) => {
+    journals
+        .find()
+        .then(journals => {
+            res.json(journals);
+        });
 });
