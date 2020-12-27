@@ -40,6 +40,18 @@
             <div id="loading-spinner" class="loading">
                 <img src="images/snowflake.svg" alt="" class="spinner">
             </div>
+            <div id="journal-response" class="journal-response">
+                <h2>New journal created</h2>
+                <ul>
+                    <li id="response-name"><span class="list-header">Name</span></li>
+                    <li id="response-description"><span class="list-header">Description</span></li>
+                    <li id="response-shared-with-users"><span class="list-header">Shared with</span></li>
+                </ul>
+                <form action="log.html" id="start-logging-form">
+                    <input id="created-journal-id" type="hidden" name="journal-id" value="">
+                    <button id="add-logs" type="submit" class="btn btn-green-solid">Add logs to Journal</button>
+                </form>
+            </div>
         </div>
 
 

@@ -16,9 +16,9 @@
 - [x] Basic layout of the page
 - [x] Html form: journey name, description, allowed users, submit, clear
 - [] Front end form validation
-- [] Submitting data to back end in JSON format (override default html request)
+- [x] Submitting data to back end in JSON format (override default html request)
 - [x] Loading animation while waiting response from back end
-- [] Confirmation: Journal created with link to Logging view and Journey view
+- [x] Confirmation: Journal created with link to Logging view
 
 #### Logging view
 
@@ -51,18 +51,17 @@
 
 - [x] NPM install + add dependencies
 - [x] Create index.js
-- [] Create database
+- [x] Create database
 
 #### index.js
 
-- [] setup express
-- [] on local host, listen to (YYYY) for api calls
-- [] YYYY/create-journal : receive JSON
-- [] validate data
-- [] create unique id for journal
-- [] send response back
-- [] save journal to database
-- [] listen to YYYY/logging for logs
+- [x] setup express
+- [x] on local host, listen to (5000) for api calls
+- [x] 5000/API/journal/ : receive JSON
+- [x] validate data
+- [x] send response back
+- [x] save journal to database and create unique id
+- [] listen to 5000/log for logs
 - [] validate data
 - [] create time stamp
 - [] save log data to database
