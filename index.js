@@ -50,9 +50,23 @@ app.post('/API/journals/', (req, res) => {
 });
 
 app.get('/API/journals/', (req, res) => {
+
     journals
         .find()
         .then(journals => {
             res.json(journals);
+        });
+
+});
+
+app.get('/API/journals/:journalId', (req, res) => {
+    const requestedJournal = {
+        '_id': req.params.journalId
+    };
+
+    journals
+        .findOne(requestedJournal)
+        .then(journal => {
+            res.json(journal);
         });
 });
