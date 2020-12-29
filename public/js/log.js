@@ -1,12 +1,24 @@
-import { getJournalId } from "./shared-assets.js";
+import { LOG_API_URL, getJournalId } from "./shared-assets.js";
 console.log('log.js loaded');
 
 const journalId = getJournalId();
+let coordinates;
+
+const logForm = document.getElementById("log-form");
+const loadingSpinner = document.getElementById("loading-spinner");
+const responseDiv = document.getElementById("log-response");
+
+loadingSpinner.style.display = 'none';
+responseDiv.style.display = 'none';
 
 function setCoordinates(pos) {
-    const location = pos.coords;
-    document.getElementById('lat').value = location.latitude;
-    document.getElementById('lon').value = location.longitude;
+    coordinates = {
+        'latitude': pos.coords.latitude,
+        'longitude': pos.coords.longitude,
+        'accuracy': pos.coords.accuracy,
+    };
+    document.getElementById('lat').value = coordinates.latitude;
+    document.getElementById('lon').value = coordinates.longitude;
     document.getElementById('log-submit').disabled = false;
 }
 
@@ -33,5 +45,51 @@ function getLocation() {
 
 }
 
-
 getLocation();
+
+logForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(logForm);
+
+    const locationDescription = formData.get('location-description');
+    const text = formData.get('log-text');
+    const log = {
+        coordinates,
+        locationDescription,
+        text,
+        journalId
+    }
+    console.log('Submitting following data:');
+    console.log(log);
+
+    loadingSpinner.style.display = '';
+    logForm.style.display = 'none';
+
+    fetch(LOG_API_URL, {
+        method: 'POST',
+        body: JSON.stringify(log),
+        headers: {
+            'content-type': 'application/json',
+        }
+    })
+        .then(response => {
+            loadingSpinner.style.display = 'none';
+            responseDiv.style.display = '';
+
+            if (response.status === 422) {
+                throw new Error("Couldn't create new journey as input data wasn't valid. Please try again.");
+            } else {
+                return response.json();
+            }
+        })
+        .then(createdLog => {
+            console.log(createdLog)
+        })
+        .catch(error => {
+            responseDiv.innerHTML = '';
+            let errorMessage = document.createElement('p');
+            errorMessage.classList.add("error-message");
+            errorMessage.textContent = error;
+            responseDiv.appendChild(errorMessage);
+        });
+});

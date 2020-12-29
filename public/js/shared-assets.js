@@ -1,4 +1,5 @@
 const JOURNAL_API_URL = 'http://localhost:5000/API/journals/';
+const LOG_API_URL = 'http://localhost:5000/API/log/';
 
 function getJournalId() {
     const queryString = window.location.search;
@@ -44,4 +45,4 @@ function createJournalMetaUl(journal) {
     return journalUl;
 }
 
-export { JOURNAL_API_URL, getJournalId, createJournalMetaUl };
+export { JOURNAL_API_URL, LOG_API_URL, getJournalId, createJournalMetaUl };

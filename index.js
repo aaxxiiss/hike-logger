@@ -29,7 +29,7 @@ function isValidJournal(journal) {
 
 app.post('/API/journals/', (req, res) => {
     if (isValidJournal(req.body)) {
-        console.log('is valid');
+        console.log('Journal is valid');
         const journal = {
             name: req.body.name.toString().trim(),
             description: req.body.description.toString().trim(),
@@ -69,4 +69,38 @@ app.get('/API/journals/:journalId', (req, res) => {
         .then(journal => {
             res.json(journal);
         });
+});
+
+
+function isValidLog(log) {
+    if (log.coordinates.latitude && log.coordinates.longitude) {
+        console.log('Log is valid');
+        return true;
+    }
+    else {
+        console.log('Log is not valid');
+        return false;
+    }
+}
+
+app.post('/API/log/', (req, res) => {
+    if (isValidLog(req.body)) {
+        res.json('is valid');
+        /*         const journal = {
+                    name: req.body.name.toString().trim(),
+                    description: req.body.description.toString().trim(),
+                    sharedWith: req.body.sharedWith.toString().trim(),
+                    created: new Date()
+                };
+                journals
+                    .insert(journal)
+                    .then(createdJournal => {
+                        res.json(createdJournal);
+                    }); */
+    } else {
+        res.status(422);
+        res.json({
+            message: "Journal data wasn't valid. Please refill the form and trya again."
+        });
+    }
 });
