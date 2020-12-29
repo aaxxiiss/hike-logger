@@ -1,7 +1,7 @@
+import { JOURNAL_API_URL } from "./shared-assets.js";
 console.log('create-journal.js loaded');
 
 const journalForm = document.getElementById("journal-form");
-const JOURNAL_API_URL = 'http://localhost:5000/API/journals/';
 const loadingSpinner = document.getElementById("loading-spinner");
 const responseDiv = document.getElementById("journal-response");
 const responseNameLi = document.getElementById('response-name');
