@@ -19,7 +19,31 @@
 
         <div id="journal-meta"></div>
 
-
+        <div class="form-container">
+            <form id="log-form" action="">
+                <div class="form-row items-on-row">
+                    <div class="row-item-container">
+                        <label for="lat">Latitude</label>
+                        <input id="lat" name="lat" type="text" required readonly="readonly">
+                    </div>
+                    <div class="row-item-container">
+                        <label for="lon">Longtitude</label>
+                        <input id="lon" name="lon" type="text" required readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="location-description">Description of location</label>
+                    <input id="location-description" name="location-description" type="text">
+                </div>
+                <div class="form-row">
+                    <label for="log-text">Log text</label>
+                    <textarea class="log-text" id="log-text" name="log-text" type="text" required></textarea>
+                </div>
+                <div class="form-row log-submit-container">
+                    <button id="log-submit" type="submit" class="btn-log-submit">Log</button>
+                </div>
+            </form>
+        </div>
 
     </main>
 

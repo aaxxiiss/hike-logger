@@ -17,7 +17,7 @@ function printJournals(journals) {
         journalDiv.appendChild(journaMetaUl);
 
         let buttonContainerDiv = document.createElement('div');
-        buttonContainerDiv.classList.add('buttons-col');
+        buttonContainerDiv.classList.add('items-on-col');
 
         let addLogsLink = document.createElement('a');
         addLogsLink.classList.add('btn', 'btn-green-solid');

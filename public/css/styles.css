@@ -36,6 +36,11 @@ h3 {
   padding: 10px 0px;
 }
 
+.log-submit-container {
+  display: flex;
+  justify-content: center;
+}
+
 label {
   font-weight: 700;
   font-size: 0.8rem;
@@ -56,16 +61,35 @@ textarea {
   height: 5rem;
 }
 
-.buttons-row {
+textarea.log-text {
+  height: 10rem;
+}
+
+.row-item-container {
+  width: 100%;
+  margin-right: 15px;
+}
+
+.row-item-container:last-of-type {
+  margin-right: 0px;
+}
+
+.items-on-row {
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
 }
 
-.buttons-col {
+.items-on-col {
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
+}
+
+a,
+button {
+  transition: ease-in-out;
+  transition-duration: 120ms;
 }
 
 button {
@@ -109,6 +133,23 @@ button.btn {
 .btn-green-border:hover {
   background-color: #3e7e38;
   color: #ffffff;
+}
+
+.btn-log-submit {
+  background-color: #3e7e38;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: #f2f2f2;
+  border: 5px solid white;
+}
+
+.btn-log-submit:hover {
+  background-color: #559e4e;
+  color: white;
+  border-color: white;
 }
 
 main {
