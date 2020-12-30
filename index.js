@@ -34,6 +34,7 @@ app.post('/API/journals/', (req, res) => {
             name: req.body.name.toString().trim(),
             description: req.body.description.toString().trim(),
             sharedWith: req.body.sharedWith.toString().trim(),
+            logs: [],
             created: new Date()
         };
         journals
@@ -73,7 +74,10 @@ app.get('/API/journals/:journalId', (req, res) => {
 
 
 function isValidLog(log) {
-    if (log.coordinates.latitude && log.coordinates.longitude) {
+    if ((log.coordinates.latitude >= -90) &&
+        (log.coordinates.latitude <= 90) &&
+        (log.coordinates.longitude >= -180) &&
+        (log.coordinates.longitude <= 180)) {
         console.log('Log is valid');
         return true;
     }
@@ -85,22 +89,31 @@ function isValidLog(log) {
 
 app.post('/API/log/', (req, res) => {
     if (isValidLog(req.body)) {
-        res.json('is valid');
-        /*         const journal = {
-                    name: req.body.name.toString().trim(),
-                    description: req.body.description.toString().trim(),
-                    sharedWith: req.body.sharedWith.toString().trim(),
-                    created: new Date()
-                };
-                journals
-                    .insert(journal)
-                    .then(createdJournal => {
-                        res.json(createdJournal);
-                    }); */
+
+        const log = {
+            coordinates: req.body.coordinates,
+            locationDescription: req.body.locationDescription.toString().trim(),
+            text: req.body.text.toString().trim(),
+            created: new Date()
+        };
+
+        const journalId = req.body.journalId;
+
+        journals
+            .findOneAndUpdate(journalId, {
+                $push: {
+                    logs: {
+                        log
+                    }
+                }
+            })
+            .then(journal => res.json(journal));
+
     } else {
         res.status(422);
         res.json({
-            message: "Journal data wasn't valid. Please refill the form and trya again."
+            message: "Log data wasn't valid. Please refill the form and try again."
         });
     }
 });
+
