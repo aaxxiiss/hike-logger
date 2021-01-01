@@ -4,8 +4,8 @@
   "description": "Application for logging hikes",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -25,10 +25,14 @@
   "homepage": "https://github.com/aaxxiiss/hike-logger#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "monk": "^7.3.2",
-    "morgan": "^1.10.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.6"
   }
 }
