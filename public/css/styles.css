@@ -169,7 +169,7 @@ button.btn {
   font-size: 2.3rem;
 }
 
-main {
+.main-container {
   max-width: 980px;
   margin: 20px auto;
   padding: 40px 30px;
@@ -281,4 +281,50 @@ li {
   margin-top: 3px;
   font-size: 0.9rem;
   font-style: italic;
+}
+
+/* LOGIN */
+
+body.login {
+  background-color: #f2f2f2;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 120px auto;
+  border-radius: 10px;
+  border: 2px solid #3e7e38;
+  text-align: center;
+}
+
+.login-header {
+  background-color: #3e7e38;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+.login-content {
+  padding: 20px 30px;
+}
+
+.login-header h1 {
+  color: #f2f2f2;
+}
+
+.login-description {
+  padding: 10px 0px;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.login-button {
+  padding: 20px;
+}
+
+.login-button i {
+  font-size: 1.1rem;
+}
+
+.login-button-text {
+  margin-left: 10px;
 }

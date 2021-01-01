@@ -1,9 +1,10 @@
+const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const morgan = require('morgan');
 const monk = require('monk');
-const connectDB = require('./config/db.js');
+const connectDB = require('./config/db');
 const exphbs = require('express-handlebars');
 const moment = require('moment');
 
@@ -20,8 +21,15 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Handlebars: add default layout, change template file extension to .hbs
-app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
+app.engine('.hbs', exphbs({ defaultLayout: 'main-layout', extname: '.hbs' }));
 app.set('view engine', '.hbs');
+
+
+// Static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Routes
+app.use('/', require('./routes/index'))
 
 const PORT = process.env.PORT || 5500;
 
@@ -33,7 +41,7 @@ app.use(express.json());
 
 app.listen(PORT, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
 
-app.use(express.static('public'));
+
 
 app.get('/API/', (req, res) => {
     res.json({
