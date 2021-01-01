@@ -1,5 +1,7 @@
 const JOURNAL_API_URL = 'http://localhost:5000/API/journals/';
 const LOG_API_URL = 'http://localhost:5000/API/log/';
+const MML_API_KEY = '2013af0c-f7fa-4dae-980e-3900ae04a539';
+
 
 function getJournalId() {
     const queryString = window.location.search;
@@ -42,7 +44,28 @@ function createJournalMetaUl(journal) {
     dateLi.appendChild(dateDataSpan);
     journalUl.appendChild(dateLi);
 
+    if (journal.logs) {
+        let logsLi = document.createElement('li');
+        let logsHeaderSpan = document.createElement('span');
+        logsHeaderSpan.classList.add('list-header');
+        logsHeaderSpan.textContent = 'Logs';
+        logsLi.appendChild(logsHeaderSpan);
+        let logsDataSpan = document.createElement('span');
+        logsDataSpan.classList.add('list-data');
+        logsDataSpan.textContent = journal.logs.length;
+        logsLi.appendChild(logsDataSpan);
+        journalUl.appendChild(logsLi);
+    }
     return journalUl;
 }
 
-export { JOURNAL_API_URL, LOG_API_URL, getJournalId, createJournalMetaUl };
+function formatDate(date) {
+    return moment(date).format('DD.MM.YYYY,H:mm');
+}
+
+function formatCoordinate(coord) {
+    return coord.toFixed(5);
+
+}
+
+export { JOURNAL_API_URL, LOG_API_URL, MML_API_KEY, getJournalId, createJournalMetaUl, formatDate, formatCoordinate };

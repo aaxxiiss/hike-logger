@@ -248,3 +248,37 @@ li {
   display: flex;
   justify-content: space-between;
 }
+
+.journal-map {
+  height: 400px;
+  max-width: 950px;
+  margin: 20px auto;
+}
+
+.marker-date {
+  font-style: normal;
+  font-weight: 700;
+}
+
+.marker-coordinates,
+.marker-accuracy {
+}
+
+.marker-date,
+.marker-coordinates,
+.marker-accuracy {
+  color: #3e7e38;
+  font-size: 0.8rem;
+}
+
+.marker-location {
+  font-weight: 700;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.marker-text {
+  margin-top: 3px;
+  font-size: 0.9rem;
+  font-style: italic;
+}
