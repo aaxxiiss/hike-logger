@@ -1,8 +1,12 @@
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
 const monk = require('monk');
+var moment = require('moment');
 
 const app = express();
+
+app.use(morgan('dev'));
 
 const db = monk('localhost/hikeLogger');
 const journals = db.get('journals');
@@ -116,4 +120,3 @@ app.post('/API/log/', (req, res) => {
         });
     }
 });
-
