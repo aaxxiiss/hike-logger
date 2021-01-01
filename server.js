@@ -3,14 +3,17 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const morgan = require('morgan');
 const monk = require('monk');
+const connectDB = require('./config/db.js');
 const moment = require('moment');
 
 // Load config
 dotenv.config({ path: './config/config.env' })
 
+connectDB();
+
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 
 app.use(morgan('dev'));
 
