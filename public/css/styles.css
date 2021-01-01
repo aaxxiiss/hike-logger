@@ -172,9 +172,12 @@ button.btn {
 .main-container {
   max-width: 980px;
   margin: 20px auto;
-  padding: 40px 30px;
   border-radius: 10px;
   background-color: #f2f2f2;
+}
+
+.content-container {
+  padding: 40px 30px;
 }
 
 .loading {
@@ -281,6 +284,28 @@ li {
   margin-top: 3px;
   font-size: 0.9rem;
   font-style: italic;
+}
+
+/* NAV */
+.navbar-container {
+  max-width: 980px;
+  padding: 20px 0px;
+}
+
+.nav-bar {
+  background-color: #64aa5e;
+  padding: 0px 30px;
+}
+
+.nav-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-item a {
+  color: #f2f2f2;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 /* LOGIN */
