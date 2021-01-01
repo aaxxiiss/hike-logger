@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const monk = require('monk');
 const connectDB = require('./config/db.js');
+const exphbs = require('express-handlebars');
 const moment = require('moment');
 
 // Load config
@@ -13,9 +14,16 @@ connectDB();
 
 const app = express();
 
-const PORT = process.env.PORT || 5500;
+// If in development, add morgan for logging
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
 
-app.use(morgan('dev'));
+// Handlebars: add default layout, change template file extension to .hbs
+app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
+app.set('view engine', '.hbs');
+
+const PORT = process.env.PORT || 5500;
 
 const db = monk('localhost/hikeLogger');
 const journals = db.get('journals');
