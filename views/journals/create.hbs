@@ -1,0 +1,32 @@
+<main>
+
+    <h1>Create a new Journal</h1>
+
+    <div class="form-container">
+        <form id="journal-form" action="/journals" method="POST">
+            <div class="form-row">
+                <label for="journal-name">Name of the Journal</label>
+                <input id="journal-name" name="name" type="text" required>
+            </div>
+            <div class="form-row">
+                <label for="journal-description">Description</label>
+                <textarea class="description-textarea" id="journal-description" name="description" type="text"
+                    required></textarea>
+            </div>
+            <div class="form-row">
+                <label for="shared-with-users">Share with users</label>
+                <input id="shared-with-users" name="sharedWith" type="text">
+            </div>
+            <div class="form-row items-on-row">
+                <button id="journal-submit" type="submit" class="btn btn-green-solid">Create Journal!</button>
+                <button id="journal-reset" type="reset" class="btn btn-green-border">Clear</button>
+            </div>
+        </form>
+        <div id="loading-spinner" class="loading hidden">
+            <img src="/images/snowflake.svg" alt="" class="spinner">
+        </div>
+    </div>
+
+</main>
+
+{{!-- <script type="module" src="/js/create-journal.js"></script> --}}

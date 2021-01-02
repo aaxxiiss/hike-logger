@@ -49,5 +49,5 @@ function getJournals() {
 
 if (isHomePage()) {
     console.log('On home page');
-    getJournals();
+    /*  getJournals(); */
 }

@@ -1,12 +1,50 @@
 <main>
 
-    <h1>Hike logger</h1>
+    <h1>Welcome {{name}}!</h1>
 
-    <a class="btn btn-green-solid" href="create-journal.html">Create a new Journal</a>
+    <div>
+        <a class="btn btn-green-solid" href="/journals/create">Create a new Journal</a>
+    </div>
+
+    <h2>My journals</h2>
+    {{#if myJournals}}
 
     <div class="journal-list-container">
-        <h2>All journals</h2>
-        <div id="journal-list"></div>
+        
+        <div id="journal-list">
+            <ul>
+
+                {{#each myJournals}}
+
+                <li>
+                    <div>
+                        <span class="list-header">Name</span>
+                        <span class="list-data">{{name}}</span>
+                    </div>
+                    <div>
+                        <span class="list-header">Description</span>
+                        <span class="list-data">{{description}}</span>
+                    </div>
+                    <div>
+                        <span class="list-header">Date</span>
+                        <span class="list-data">{{createdAt}}</span>
+                    </div>
+                    <div class="items-on-col">
+                        <a href="/add-log/{{_id}}" class="btn btn-green-solid">Add logs</a>
+                        <a href="/view-journal/{{_id}}" class="btn btn-green-solid">View journal</a>
+                    </div>
+                </li>
+
+                {{/each}}
+
+            </ul>
+        </div>
     </div>
+
+    {{else}}
+
+    <p>You have not created any journals</p>
+
+    {{/if}}
 
 </main>

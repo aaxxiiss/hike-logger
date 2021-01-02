@@ -1,12 +1,14 @@
 const path = require('path');
 const express = require('express');
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const morgan = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
-const monk = require('monk');
-const connectDB = require('./config/db');
+const MongoStore = require('connect-mongo')(session);
+// const monk = require('monk');
+const connectDB = require('./config/db.js');
 const exphbs = require('express-handlebars');
 const moment = require('moment');
 
@@ -20,7 +22,13 @@ connectDB();
 
 const app = express();
 
-// If in development, add morgan for logging
+// app.use(cors());
+
+// Body parser
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+// Logging
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
@@ -34,6 +42,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 
 // Passport middleware
@@ -44,20 +53,21 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/', require('./routes/index'))
-app.use('/auth', require('./routes/auth'))
+app.use('/', require('./routes/index.js'));
+app.use('/auth', require('./routes/auth.js'));
+app.use('/journals', require('./routes/journals.js'));
 
 const PORT = process.env.PORT || 5500;
 
+app.listen(PORT, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
+
+
+/*
 const db = monk('localhost/hikeLogger');
 const journals = db.get('journals');
 
 app.use(cors());
 app.use(express.json());
-
-app.listen(PORT, () => console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
-
-
 
 app.get('/API/', (req, res) => {
     res.json({
@@ -161,3 +171,5 @@ app.post('/API/log/', (req, res) => {
         });
     }
 });
+
+*/

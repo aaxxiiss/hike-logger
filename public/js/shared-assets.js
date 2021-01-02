@@ -1,4 +1,4 @@
-const JOURNAL_API_URL = 'http://localhost:5000/API/journals/';
+const JOURNAL_API_URL = 'http://localhost:5000/journals/';
 const LOG_API_URL = 'http://localhost:5000/API/log/';
 const MML_API_KEY = '2013af0c-f7fa-4dae-980e-3900ae04a539';
 

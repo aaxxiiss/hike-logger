@@ -1,0 +1,24 @@
+<main>
+
+    <div id="journal-response" class="journal-response">
+        <h2>New journal created</h2>
+        <ul>
+            <li id="response-name">
+                <span class="list-header">Name</span>
+                <span class="list-data">{{name}}</span>
+            </li>
+            <li id="response-description">
+                <span class="list-header">Description</span>
+                <span class="list-data">{{description}}</span>
+            </li>
+            <li id="response-shared-with-users">
+                <span class="list-header">Shared with</span>
+                <span class="list-data">{{sharedWith.email}}</span>
+            </li>
+        </ul>
+        <div>
+            <a href="/journals/log/{{_id}}" class="btn btn-green-solid">Add logs to Journal</a>
+        </div>
+    </div>
+
+</main>

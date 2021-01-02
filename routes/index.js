@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const { ensureAuth, ensureGuest } = require('../middleware/authMidd.js');
+const Journal = require('../models/Journal.js');
 
 // @desc    Login / landing page
 // @route   GET /
-router.get('/', (req, res) => {
+router.get('/', ensureGuest, (req, res) => {
     res.render('login', {
         layout: 'login-layout'
     });
@@ -11,27 +13,18 @@ router.get('/', (req, res) => {
 
 // @desc    Dashboard
 // @route   GET / dashboard
-router.get('/dashboard', (req, res) => {
-    res.render('dashboard');
-});
+router.get('/dashboard', ensureAuth, async (req, res) => {
+    try {
+        const myJournals = await Journal.find({ createdBy: req.user.id }).lean();
+        res.render('dashboard', {
+            name: req.user.firstName,
+            myJournals
+        });
+    } catch (err) {
+        console.error(err);
+        res.render('./error/500');
+    }
 
-// @desc    Create new journal
-// @route   GET / create-journal
-router.get('/create-journal', (req, res) => {
-    res.render('create-journal');
 });
-
-// @desc    View journal
-// @route   GET / view-journal
-router.get('/view-journal', (req, res) => {
-    res.render('view-journal');
-});
-
-// @desc    Add new logs to journaö
-// @route   GET / add-log
-router.get('/add-log', (req, res) => {
-    res.render('add-log');
-});
-
 
 module.exports = router;
