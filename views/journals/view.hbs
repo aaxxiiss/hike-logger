@@ -5,14 +5,64 @@
     crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 
+<input type="hidden" id="journal-id" value="{{_id}}">
+
 <main>
 
-    <h1>View Journal</h1>
+    <h1 class="no-print">View Journal</h1>
 
-    <div id="journal-meta"></div>
+    <div class="journal-meta-grid">
 
-    <div id="journal-map" class="journal-map"></div>
+                <span class="list-header">Title</span>
+                <span class="list-data">{{name}}</span>
+
+                <span class="list-header">Date</span>
+                <span class="list-data">{{getJournalDate this}}</span>
+
+                <span class="list-header">Description</span>
+                <span class="list-data">{{description}}</span>
+
+                <span class="list-header">Created by</span>
+                <span class="list-data">{{createdBy.displayName}}</span>
+
+                <span class="list-header">Logs</span>
+                <span class="list-data">{{logs.length}}</span>
+ 
+    </div>
+
+    {{#if logs}}
+
+        <div id="journal-map" class="journal-map no-print">
+        </div>
+
+    <div class="journal-logs-grid">
+        <span class="grid-header">#</span>
+        <span class="grid-header">Date</span>
+        <span class="grid-header">Location</span>
+        <span class="grid-header">Text</span>
+        <span class="grid-header">Log by</span>
+
+        {{#each logs}}
+
+            <div class="grid-row-wrapper">
+                <span class="index">{{count @index 1}}</span>
+                <span class="date"><b>{{formatDate createdAt 'D.M.YYYY'}}</b>
+                        {{formatDate createdAt 'HH:MM'}} </span>
+                <span class="location">
+                    {{formatCoordinate coordinates.latitude 5}}° /  
+                    {{formatCoordinate coordinates.longitude 5}}°<br>
+                    <i>{{description}}</i>
+                </span>
+                <span id="log-item-{{count @index 1}}" class="text">{{text}}</span>
+                <span class="log-by">{{createdBy.displayName}}</span>
+            </div>
+
+        {{/each}}
+
+    </div>
+
+    {{/if}}
 
 </main>
 
-<script type="module" src="js/view-journal.js"></script>
+<script type="module" src="/js/view-journal.js"></script>

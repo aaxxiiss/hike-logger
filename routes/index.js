@@ -16,9 +16,17 @@ router.get('/', ensureGuest, (req, res) => {
 router.get('/dashboard', ensureAuth, async (req, res) => {
     try {
         const myJournals = await Journal.find({ createdBy: req.user.id }).lean();
+        const newSharedJournals = await Journal.find({ sharedWith: { email: req.user.email }, sharedStatus: 'initial' })
+            .populate('createdBy')
+            .lean();
+        const sharedJournals = await Journal.find({ sharedWith: { email: req.user.email }, sharedStatus: 'accepted' })
+            .populate('createdBy')
+            .lean();
         res.render('dashboard', {
             name: req.user.firstName,
-            myJournals
+            myJournals,
+            newSharedJournals,
+            sharedJournals
         });
     } catch (err) {
         console.error(err);

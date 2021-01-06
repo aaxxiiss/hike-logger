@@ -1,3 +1,5 @@
+<input type="hidden" id="journal-id" value="{{_id}}">
+
 <main>
 
     <h1>Add logs to journey</h1>
@@ -18,24 +20,24 @@
             </div>
             <div class="form-row">
                 <label for="location-description">Description of location</label>
-                <input id="location-description" name="location-description" type="text">
+                <input id="location-description" name="location-description" type="text" maxlength="60">
             </div>
             <div class="form-row">
                 <label for="log-text">Log text</label>
-                <textarea class="log-text" id="log-text" name="log-text" type="text"></textarea>
+                <textarea class="log-text" id="log-text" name="log-text" type="text" maxlength="1500"></textarea>
             </div>
             <div class="form-row log-submit-container">
                 <button id="log-submit" type="submit" class="btn-log-submit" disabled>Log</button>
             </div>
         </form>
-        <div id="loading-spinner" class="loading">
+        <div id="loading-spinner" class="loading hidden">
             <img src="images/snowflake.svg" alt="" class="spinner">
         </div>
-        <div id="log-response" class="log-response">
+        <div id="log-response" class="log-response hidden">
             <h2>New log added succesfully!</h2>
         </div>
     </div>
 
 </main>
 
-<script type="module" src="js/log.js"></script>
+<script type="module" src="/js/log.js"></script>

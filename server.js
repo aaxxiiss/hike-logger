@@ -10,7 +10,7 @@ const MongoStore = require('connect-mongo')(session);
 // const monk = require('monk');
 const connectDB = require('./config/db.js');
 const exphbs = require('express-handlebars');
-const moment = require('moment');
+const methodOverride = require('method-override');
 
 // Load config
 dotenv.config({ path: './config/config.env' });
@@ -28,13 +28,38 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// Method override
+app.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        // look in urlencoded POST bodies and delete it
+        let method = req.body._method
+        delete req.body._method
+        return method
+    }
+}))
+
 // Logging
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
-// Handlebars: add default layout, change template file extension to .hbs
-app.engine('.hbs', exphbs({ defaultLayout: 'main-layout', extname: '.hbs' }));
+// Handlebar's helpers
+const { formatDate, formatCoordinate, truncate, count, getJournalDate } = require('./helpers/hbs.js');
+
+// Handlebars
+app.engine(
+    '.hbs',
+    exphbs({
+        helpers: {
+            formatDate,
+            formatCoordinate,
+            truncate,
+            count,
+            getJournalDate
+        },
+        defaultLayout: 'main-layout',
+        extname: '.hbs',
+    }));
 app.set('view engine', '.hbs');
 
 // Sessions
@@ -54,6 +79,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', require('./routes/index.js'));
+app.use('/api', require('./routes/api.js'));
 app.use('/auth', require('./routes/auth.js'));
 app.use('/journals', require('./routes/journals.js'));
 

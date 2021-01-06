@@ -1,25 +1,27 @@
-import { JOURNAL_API_URL, MML_API_KEY, getJournalId, createJournalMetaUl, formatDate, formatCoordinate } from "./shared-assets.js";
+import { formatDate, formatCoordinate, truncate } from "/js/shared-assets.js";
+console.log('view-journal.js loaded');
 
-const journalId = getJournalId();
+const JOURNAL_API_URL = "http://localhost:5000/api/journals/";
 
+const journalId = document.getElementById('journal-id').value;
 
-fetch(JOURNAL_API_URL + getJournalId())
-    .then(response => response.json())
-    .then(journal => {
-        printJournalMeta(journal);
-        printJournalMap(journal);
-    })
-    .catch(error => console.log(error));
+async function getJournal(url, id) {
+    try {
+        console.log('Fetching journal' + id);
+        const response = await fetch(url + id);
+        const data = await response.json();
 
-function printJournalMeta(journal) {
+        console.log(data.journal)
 
-    let journalMetaDiv = document.getElementById('journal-meta');
-    console.log(journal);
+        if (data.journal.logs) {
+            printJournalMap(data.journal)
+        }
 
-    let journalUl = createJournalMetaUl(journal);
-
-    journalMetaDiv.appendChild(journalUl);
+    } catch (err) {
+        console.log(err)
+    }
 }
+
 
 function printJournalMap(journal) {
 
@@ -34,7 +36,7 @@ function printJournalMap(journal) {
     };
 
     const myIcon = L.icon({
-        iconUrl: 'images/hiking.svg',
+        iconUrl: '/images/hiking.svg',
         iconSize: [38, 95],
         iconAnchor: [22, 94],
         popupAnchor: [-3, -76],
@@ -55,21 +57,25 @@ function printJournalMap(journal) {
     let logMarkers = [];
 
     for (let i in journal.logs) {
-        const log = journal.logs[i].log;
+        const log = journal.logs[i];
         const markerOptions = {
             'icon': myIcon,
-            'title': log.created
+            'title': log.createdAt
         }
         let popupTextext =
-            `<div class="marker-date">${formatDate(log.created)}</span></div>
+            `<div class="marker-date">${formatDate(log.createdAt)}</span></div>
         <div class="marker-coordinates">${formatCoordinate(log.coordinates.latitude)}° / ${formatCoordinate(log.coordinates.longitude)}°</div>`;
         if (log.coordinates.accuracy) {
             popupTextext += `<div class="marker-accuracy">Accuracy: ${log.coordinates.accuracy}</div>`;
         }
-        if (log.locationDescription) {
-            popupTextext += `<div class="marker-location">${log.locationDescription}</div>`;
+        if (log.description) {
+            popupTextext += `<div class="marker-location">${log.description}</div>`;
         }
-        if (log.locationDescription) {
+        if (log.text && log.text.length > 50) {
+            popupTextext += `<div class="marker-text">${truncate(log.text, 70)}
+                                <a href="#log-item-${parseInt(i) + 1}">Read more</a>
+                            </div>`;
+        } else if (log.text) {
             popupTextext += `<div class="marker-text">${log.text}</div>`;
         }
 
@@ -83,3 +89,5 @@ function printJournalMap(journal) {
     journalMap.fitBounds(group.getBounds());
 
 }
+
+getJournal(JOURNAL_API_URL, journalId);

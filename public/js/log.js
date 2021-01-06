@@ -1,7 +1,9 @@
-import { LOG_API_URL, getJournalId } from "./shared-assets.js";
 console.log('log.js loaded');
 
-const journalId = getJournalId();
+const LOG_API_URL = "http://localhost:5000/api/journals/log/";
+const journalId = document.getElementById('journal-id').value;
+
+
 let coordinates;
 
 const logForm = document.getElementById("log-form");

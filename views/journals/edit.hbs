@@ -1,25 +1,26 @@
 <main>
 
-    <h1>Create a new Journal</h1>
+    <h1>Edit Journal</h1>
 
     <div class="form-container">
-        <form id="journal-form" action="/journals/create" method="POST">
+        <form id="journal-form" action="/journals/{{_id}}" method="POST">
+            <input type="hidden" name="_method" value="PUT">
             <div class="form-row">
-                <label for="journal-name">Title of the Journal</label>
-                <input id="journal-name" name="name" type="text" maxlength="80" required>
+                <label for="journal-name">Name of the Journal</label>
+                <input id="journal-name" name="name" type="text" maxlength="80" value="{{name}}" required>
             </div>
             <div class="form-row">
                 <label for="journal-description">Description</label>
                 <textarea class="description-textarea" id="journal-description" name="description"
-                    type="text" maxlength="300" required></textarea>
+                    type="text" maxlength="300" required>{{description}}</textarea>
             </div>
             <div class="form-row">
                 <label for="shared-with-users">Share with user (email)</label>
-                <input id="shared-with-users" name="sharedWith" type="email" maxlength="320">
+                <input id="shared-with-users" name="sharedWith" type="email" maxlength="320" value="{{sharedWith.email}}">
             </div>
             <div class="form-row items-on-row">
-                <button id="journal-submit" type="submit" class="btn btn-green-solid">Create Journal!</button>
-                <button id="journal-reset" type="reset" class="btn btn-green-border">Clear</button>
+                <button id="journal-submit" type="submit" class="btn btn-green-solid">Save changes!</button>
+                <a href="/dashboard" id="cancel" class="btn btn-green-border">Cancel</a>
             </div>
         </form>
         <div id="loading-spinner" class="loading hidden">

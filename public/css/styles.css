@@ -28,6 +28,16 @@ h3 {
   font-size: 1.2rem;
 }
 
+a {
+  color: #1e3e1b;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3e7e38;
+  text-decoration: underline;
+}
+
 .form-container {
   max-width: 600px;
   margin: 50px auto;
@@ -115,6 +125,12 @@ a.btn {
   text-transform: uppercase;
 }
 
+a.btn-icon {
+  padding: 5px 5px;
+  margin: 0px 2px 3px 2px;
+  display: inline-block;
+}
+
 button.btn {
   height: 40px;
 }
@@ -138,6 +154,17 @@ button.btn {
 
 .btn-green-border:hover {
   background-color: #3e7e38;
+  color: #ffffff;
+}
+
+.btn-red-solid {
+  border: none;
+  background-color: #a13131;
+  color: #f2f2f2;
+}
+
+.btn-red-solid:hover {
+  background-color: #ad4343;
   color: #ffffff;
 }
 
@@ -177,7 +204,7 @@ button.btn {
 }
 
 .content-container {
-  padding: 40px 30px;
+  padding: 0px 30px 50px 30px;
 }
 
 .hidden {
@@ -242,24 +269,82 @@ li {
   font-style: italic;
 }
 
-.journal-list-container {
-  padding: 30px 0px;
+.journals-grid {
+  width: 100%;
+  display: grid;
+  gap: 2px;
+  grid-template-columns:
+    minmax(120px, auto)
+    minmax(80px, 150px)
+    minmax(20%, 30%)
+    minmax(80px, 150px);
 }
 
-.journal-item {
+.journal-logs-grid {
+  width: 100%;
+  display: grid;
+  gap: 2px;
+  grid-template-columns:
+    35px
+    minmax(80px, 80px)
+    minmax(80px, 150px)
+    minmax(120px, auto)
+    minmax(80px, 150px);
+}
+
+@media only screen and (max-width: 600px) {
+  .journal-logs-grid {
+    grid-template-columns: auto;
+  }
+}
+
+.grid-header {
+  background-color: #3e7e38;
+  color: #f2f2f2;
+  padding: 8px 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.grid-row-wrapper {
+  display: contents;
+}
+
+.grid-row-wrapper:nth-child(even) > span {
+  background-color: #e8e8e8;
+}
+
+.grid-row-wrapper:nth-child(odd) > span {
   background-color: #d4e4d3;
-  max-width: 850px;
+}
+
+.journals-grid span,
+.journal-logs-grid span {
+  padding: 10px 8px;
+  font-size: 0.9rem;
+}
+
+.journals-grid span.email {
+  overflow-wrap: break-word;
+}
+
+.journal-meta-grid {
+  display: grid;
+  grid-template-columns: 130px auto;
+  background-color: #d4e4d3;
   border-radius: 10px;
   padding: 10px 20px;
-  margin: 0px auto 15px auto;
-  display: flex;
-  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.journal-meta-grid span {
+  padding: 8px 8px;
 }
 
 .journal-map {
   height: 400px;
   max-width: 950px;
-  margin: 20px auto;
+  margin: 0px auto 30px auto;
 }
 
 .marker-date {
@@ -318,15 +403,23 @@ li {
 /* LOGIN */
 
 body.login {
-  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/images/autumn-lake.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .login-container {
   max-width: 400px;
-  margin: 120px auto;
   border-radius: 10px;
   border: 2px solid #3e7e38;
   text-align: center;
+  background-color: #ffffff3c;
+  padding: 20px 0px 50px 0px;
+  margin-bottom: 50px;
 }
 
 .login-header {
@@ -359,4 +452,91 @@ body.login {
 
 .login-button-text {
   margin-left: 10px;
+}
+
+/* DASHBOARD */
+.new-shared-journal {
+  background-color: #d4e4d3;
+  border-radius: 10px;
+  padding: 20px 20px;
+  margin-bottom: 30px;
+}
+
+/* HELPERS */
+
+.pb-1 {
+  padding-bottom: 5px;
+}
+
+.pb-2 {
+  padding-bottom: 10px;
+}
+
+.pb-3 {
+  padding-bottom: 15px;
+}
+
+.pb-4 {
+  padding-bottom: 20px;
+}
+
+.pb-5 {
+  padding-bottom: 25px;
+}
+
+.mr-1 {
+  margin-right: 2px;
+}
+
+.mr-2 {
+  margin-right: 5px;
+}
+
+.mr-3 {
+  margin-right: 10px;
+}
+
+.mr-4 {
+  margin-right: 15px;
+}
+.mr-5 {
+  margin-right: 25px;
+}
+
+/* MOBILE */
+@media only screen and (max-width: 600px) {
+  .journal-logs-grid {
+    grid-template-columns: auto;
+  }
+  .grid-header {
+    display: none;
+  }
+
+  .journal-logs-grid span.index:before {
+    content: '# ';
+  }
+}
+
+/* PRINT */
+@media print {
+  .no-print,
+  .nav-bar {
+    display: none !important;
+  }
+
+  .journal-logs-grid {
+    grid-template-columns: auto;
+  }
+  .grid-header {
+    display: none;
+  }
+
+  .journal-logs-grid span.index:before {
+    content: '# ';
+  }
+
+  .journal-logs-grid span.index {
+    border-top: 0.1rem solid black;
+    margin-top: 0.5rem;
+  }
 }

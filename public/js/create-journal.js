@@ -1,5 +1,6 @@
-import { JOURNAL_API_URL } from "./shared-assets.js";
+const CREATE_JOURNAL_URL = "http://localhost:5000/journals/create";
 console.log('create-journal.js loaded');
+console.log(CREATE_JOURNAL_URL);
 
 const journalForm = document.getElementById("journal-form");
 const loadingSpinner = document.getElementById("loading-spinner");
@@ -22,7 +23,7 @@ journalForm.addEventListener('submit', (event) => {
 
     try {
         console.log('posting')
-        fetch(JOURNAL_API_URL, {
+        fetch(CREATE_JOURNAL_URL, {
             method: 'POST',
             body: JSON.stringify(journal),
             headers: {
