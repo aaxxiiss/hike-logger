@@ -37,5 +37,6 @@ module.exports = {
             return `${moment(journal.logs[0].createdAt).format('D.M.YYYY')} – 
             ${moment(journal.logs[journal.logs.length - 1].createdAt).format('D.M.YYYY')}`;
         }
-    }
+    },
+
 };

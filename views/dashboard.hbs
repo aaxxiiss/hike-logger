@@ -2,16 +2,42 @@
 
     <h1 class="pb-4">Welcome {{name}}!</h1>
 
-    <div class="pb-4">
-        <a class="btn btn-green-solid" href="/journals/create">
-            <i class="fas fa-plus-circle mr-2"></i>
-            Create a new Journal</a>
+    {{#if newSharedJournals}}
+
+    {{#each newSharedJournals}}
+
+    <div class="new-shared-journal">
+        <p><b>{{createdBy.displayName}}</b> wants to share a journal with you. Would you like to follow along?</p>
+        <div class="details">
+            <div>
+                <span class="list-header">Title</span>
+                <span class="list-data">{{name}}</span>
+            </div>
+            <div>
+                <span class="list-header">Date</span>
+                <span class="list-data">{{getJournalDate this}}</span>
+            </div>
+        </div>
+        
+        <form action="/journals/follow/{{_id}}" method="POST" class="new-shared-journal-form items-on-row">
+            <input type="hidden" name="_method" value="PUT">
+            <button type="submit" name="submit" value="accepted" class="btn btn-green-solid">
+                <i class="fas fa-check-circle mr-3"></i>Follow
+            </button>
+            <button type="submit" name="submit" value="rejected" class="btn btn-red-solid">
+                <i class="fas fa-times-circle mr-3"></i>Reject
+            </button>
+        </form>
     </div>
+
+    {{/each}}
+
+    {{/if}}
 
     <h2>My journals</h2>
     {{#if myJournals}}
 
-    <div class="journals-grid pb-4">
+    <div class="journals-grid pb-5">
 
         <span class="grid-header">Journal title</span>
         <span class="grid-header">Date</span>
@@ -53,71 +79,45 @@
 
     {{/if}}
 
-    <h2>Shared with me</h2>
-
-    {{#if newSharedJournals}}
-
-    {{#each newSharedJournals}}
-
-    <div class="new-shared-journal">
-        <p><b>{{createdBy.displayName}}</b> wants to share a journal with you. Would you like to follow along?</p>
-        <div class="details">
-            <div>
-                <span class="list-header">Title</span>
-                <span class="list-data">{{name}}</span>
-            </div>
-            <div>
-                <span class="list-header">Date</span>
-                <span class="list-data">{{getJournalDate this}}</span>
-            </div>
-        </div>
-        
-        <form action="/journals/follow/{{_id}}" method="POST" class="new-shared-journal-form items-on-row">
-            <input type="hidden" name="_method" value="PUT">
-            <button type="submit" name="submit" value="accepted" class="btn btn-green-solid">
-                <i class="fas fa-check-circle mr-3"></i>Follow
-            </button>
-            <button type="submit" name="submit" value="rejected" class="btn btn-red-solid">
-                <i class="fas fa-times-circle mr-3"></i>Reject
-            </button>
-        </form>
+    <div class="pb-4">
+        <a class="btn btn-green-solid" href="/journals/create">
+            <i class="fas fa-plus-circle mr-2"></i>Create a new Journal
+        </a>
     </div>
 
-    {{/each}}
-
-    {{/if}}
+    <h2>Shared with me</h2>
 
 
     {{#if sharedJournals}}
+    <div class="pb-4">
+        <div class="journals-grid">
 
-    <div class="journals-grid pb-4">
+            <span class="grid-header">Journal title</span>
+            <span class="grid-header">Date</span>
+            <span class="grid-header">Created by</span>
+            <span class="grid-header">Actions</span>
 
-        <span class="grid-header">Journal title</span>
-        <span class="grid-header">Date</span>
-        <span class="grid-header">Created by</span>
-        <span class="grid-header">Actions</span>
+            {{#each sharedJournals}}
 
-        {{#each sharedJournals}}
+            <div class="grid-row-wrapper">
+                <span class="title">
+                    <a href="/journals/view/{{_id}}" class="" title="View journal">
+                        {{truncate name 40}}
+                    </a>
+                </span>
+                <span class="date">{{formatDate createdAt 'DD.MM.YYYY'}}</span>
+                <span class="created">{{createdBy.displayName}}</span>
+                <span class="buttons">
+                    <a href="/journals/view/{{_id}}" class="btn btn-icon btn-green-solid" title="View journal">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                </span>
+            </div>
 
-        <div class="grid-row-wrapper">
-            <span class="title">
-                <a href="/journals/view/{{_id}}" class="" title="View journal">
-                    {{truncate name 40}}
-                </a>
-            </span>
-            <span class="date">{{formatDate createdAt 'DD.MM.YYYY'}}</span>
-            <span class="created">{{createdBy.displayName}}</span>
-            <span class="buttons">
-                <a href="/journals/view/{{_id}}" class="btn btn-icon btn-green-solid" title="View journal">
-                    <i class="fas fa-eye"></i>
-                </a>
-            </span>
+            {{/each}}
+
+
         </div>
-
-        {{/each}}
-
-
-
     </div>
 
     {{else}}

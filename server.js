@@ -55,7 +55,7 @@ app.engine(
             formatCoordinate,
             truncate,
             count,
-            getJournalDate
+            getJournalDate,
         },
         defaultLayout: 'main-layout',
         extname: '.hbs',

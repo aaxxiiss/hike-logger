@@ -94,8 +94,6 @@ router.get('/view/:id', ensureAuth, async (req, res) => {
             .populate('createdBy')
             .populate('logs.createdBy')
             .lean();
-        console.log(req.user.googleId);
-        console.log(journal.createdBy.googleId);
         if (req.user.googleId === journal.createdBy.googleId ||
             req.user.email === journal.sharedWith.email) {
             res.render('journals/view', journal);

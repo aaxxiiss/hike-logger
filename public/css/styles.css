@@ -292,12 +292,6 @@ li {
     minmax(80px, 150px);
 }
 
-@media only screen and (max-width: 600px) {
-  .journal-logs-grid {
-    grid-template-columns: auto;
-  }
-}
-
 .grid-header {
   background-color: #3e7e38;
   color: #f2f2f2;
@@ -504,11 +498,12 @@ body.login {
 }
 
 /* MOBILE */
+
 @media only screen and (max-width: 600px) {
   .journal-logs-grid {
     grid-template-columns: auto;
   }
-  .grid-header {
+  .journal-logs-grid .grid-header {
     display: none;
   }
 
@@ -527,7 +522,7 @@ body.login {
   .journal-logs-grid {
     grid-template-columns: auto;
   }
-  .grid-header {
+  .journal-logs-grid .grid-header {
     display: none;
   }
 
