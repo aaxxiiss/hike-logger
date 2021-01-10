@@ -6,6 +6,8 @@ const journalId = document.getElementById('journal-id').value;
 
 let coordinates;
 
+const getCoordinatesBtn = document.getElementById("get-coordinates");
+getCoordinatesBtn.addEventListener("click", getLocation);
 const logForm = document.getElementById("log-form");
 const loadingSpinner = document.getElementById("loading-spinner");
 const responseDiv = document.getElementById("log-response");
@@ -46,8 +48,6 @@ function getLocation() {
     }
 
 }
-
-getLocation();
 
 logForm.addEventListener('submit', (event) => {
     event.preventDefault();

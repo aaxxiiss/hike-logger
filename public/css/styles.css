@@ -96,6 +96,10 @@ textarea.log-text {
   justify-content: space-between;
 }
 
+.align-self-bottom {
+  align-self: center;
+}
+
 .items-on-col {
   display: flex;
   justify-content: space-evenly;
@@ -125,14 +129,25 @@ a.btn {
   text-transform: uppercase;
 }
 
+button.btn {
+  height: 40px;
+}
+
 a.btn-icon {
   padding: 5px 5px;
   margin: 0px 2px 3px 2px;
   display: inline-block;
 }
 
-button.btn {
-  height: 40px;
+button.btn-icon {
+  height: 25px;
+  padding: 5px 5px;
+  margin: 0px 2px 3px 2px;
+  display: inline-block;
+}
+
+.delete-journal-form {
+  display: inline-block;
 }
 
 .btn-green-solid {

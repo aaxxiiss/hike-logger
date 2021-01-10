@@ -84,6 +84,18 @@ router.put('/:id', ensureAuth, async (req, res) => {
     }
 });
 
+// @desc    Process changes from edit journal page
+// @route   DELETE / journals/:id
+router.delete('/:id', ensureAuth, async (req, res) => {
+    try {
+        console.log(`Received DEL request for Journal ID ${req.params.id}`);
+        res.redirect('/dashboard');
+    } catch (err) {
+        console.error(err);
+        res.render('error/500');
+    }
+});
+
 
 // @desc    Render: View journal page
 // @route   GET / journals/view/:id

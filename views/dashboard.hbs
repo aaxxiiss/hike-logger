@@ -18,7 +18,7 @@
                 <span class="list-data">{{getJournalDate this}}</span>
             </div>
         </div>
-        
+
         <form action="/journals/follow/{{_id}}" method="POST" class="new-shared-journal-form items-on-row">
             <input type="hidden" name="_method" value="PUT">
             <button type="submit" name="submit" value="accepted" class="btn btn-green-solid">
@@ -63,9 +63,12 @@
                 <a href="/journals/edit/{{_id}}" class="btn btn-icon btn-green-solid" title="Edit journal">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="/journals/delete/{{_id}}" class="btn btn-icon btn-red-solid" title="Delete journal">
-                    <i class="fas fa-minus-circle"></i>
-                </a>
+                <form class="delete-journal-form" action="/journals/{{_id}}" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-icon btn-red-solid" title="Delete journal">
+                        <i class="fas fa-minus-circle"></i>
+                    </button>
+                </form>
             </span>
         </div>
 
