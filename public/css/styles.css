@@ -512,6 +512,18 @@ body.login {
   margin-right: 25px;
 }
 
+.d-inline {
+  display: inline;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-flex {
+  display: flex;
+}
+
 /* MOBILE */
 
 @media only screen and (max-width: 600px) {
@@ -549,4 +561,19 @@ body.login {
     border-top: 0.1rem solid black;
     margin-top: 0.5rem;
   }
+}
+
+/* Leaflet */
+.numbered-div-icon {
+  position: relative;
+}
+
+.numbered-div-icon > .number {
+  position: absolute;
+  top: 4;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
 }

@@ -18,6 +18,10 @@
                     <label for="lon">Longtitude</label>
                     <input id="lon" name="lon" type="text" readonly tabindex='-1' onfocus='this.blur();'>
                 </div>
+                <div class="row-item-container">
+                    <label for="accuracy">Accuracy</label>
+                    <input id="accuracy" name="accuracy" type="text" readonly tabindex='-1' onfocus='this.blur();'>
+                </div>
             </div>
             <div class="form-row">
                 <label for="location-description">Description of location</label>
@@ -32,7 +36,7 @@
             </div>
         </form>
         <div id="loading-spinner" class="loading hidden">
-            <img src="images/snowflake.svg" alt="" class="spinner">
+            <img src="/images/snowflake.svg" alt="" class="spinner">
         </div>
         <div id="log-response" class="log-response hidden">
             <h2>New log added succesfully!</h2>

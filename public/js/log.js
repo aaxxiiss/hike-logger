@@ -1,4 +1,5 @@
 console.log('log.js loaded');
+import { formatDate, formatCoordinate, truncate } from "/js/shared-assets.js";
 
 const LOG_API_URL = "http://localhost:5000/api/journals/log/";
 const journalId = document.getElementById('journal-id').value;
@@ -21,8 +22,9 @@ function setCoordinates(pos) {
         'longitude': pos.coords.longitude,
         'accuracy': pos.coords.accuracy,
     };
-    document.getElementById('lat').value = coordinates.latitude;
-    document.getElementById('lon').value = coordinates.longitude;
+    document.getElementById('lat').value = formatCoordinate(coordinates.latitude) + '°';
+    document.getElementById('lon').value = formatCoordinate(coordinates.longitude) + '°';
+    document.getElementById('accuracy').value = coordinates.accuracy + ' m';
     document.getElementById('log-submit').disabled = false;
 }
 

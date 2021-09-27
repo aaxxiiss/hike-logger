@@ -23,7 +23,42 @@ async function getJournal(url, id) {
 }
 
 
+
+
+
 function printJournalMap(journal) {
+
+    // Leaflet custom numbered icon ->
+
+    L.NumberedDivIcon = L.Icon.extend({
+        options: {
+            iconUrl: '/images/map-marker.svg',
+            number: '',
+            shadowUrl: null,
+            iconSize: new L.Point(30, 41),
+            iconAnchor: new L.Point(13, 41),
+            popupAnchor: new L.Point(2, -52),
+            /*
+            iconAnchor: (Point)
+            popupAnchor: (Point)
+            */
+            className: 'numbered-div-icon'
+        },
+
+        createIcon: function () {
+            var div = document.createElement('div');
+            var img = this._createImg(this.options['iconUrl']);
+            var numdiv = document.createElement('div');
+            numdiv.setAttribute("class", "number");
+            numdiv.innerHTML = this.options['number'] || '';
+            div.appendChild(img);
+            div.appendChild(numdiv);
+            this._setIconStyles(div, 'icon');
+            return div;
+        }
+    });
+
+    // <- Leaflet custom numbered icons
 
     const mapOptions = {
         'attributionControl': true,
@@ -35,18 +70,6 @@ function printJournalMap(journal) {
 
     };
 
-    const myIcon = L.icon({
-        iconUrl: '/images/hiking.svg',
-        iconSize: [38, 95],
-        iconAnchor: [22, 94],
-        popupAnchor: [-3, -76],
-        className: 'journal-map-icon',
-        // shadowUrl: 'images/hiking.svg',
-        // shadowSize: [68, 95],
-        // shadowAnchor: [22, 94]
-    });
-
-
     let journalMap = L.map('journal-map', mapOptions);
 
     const tilesURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -57,10 +80,11 @@ function printJournalMap(journal) {
     let logMarkers = [];
 
     for (let i in journal.logs) {
+        const index = parseInt(i, 10) + 1;
         const log = journal.logs[i];
         const markerOptions = {
-            'icon': myIcon,
-            'title': log.createdAt
+            'icon': new L.NumberedDivIcon({ number: index }),
+            'title': log.createdAt,
         }
         let popupTextext =
             `<div class="marker-date">${formatDate(log.createdAt)}</span></div>
