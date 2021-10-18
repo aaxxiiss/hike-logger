@@ -1,71 +1,73 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<link rel='stylesheet' href='/css/leaflet.css' />
 
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+<script
+  src='https://unpkg.com/leaflet@1.7.1/dist/leaflet.js'
+  integrity='sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=='
+  crossorigin=''
+></script>
+<script src='https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js'></script>
 
-<input type="hidden" id="journal-id" value="{{_id}}">
+<input type='hidden' id='journal-id' value='{{_id}}' />
 
 <main>
 
-    <h1 class="no-print">View Journal</h1>
+  <h1 class='no-print'>View Journal</h1>
 
-    <div class="journal-meta-grid">
+  <div class='journal-meta-grid'>
 
-        <span class="list-header">Title</span>
-        <span class="list-data">{{name}}</span>
+    <span class='list-header'>Title</span>
+    <span class='list-data'>{{name}}</span>
 
-        <span class="list-header">Date</span>
-        <span class="list-data">{{getJournalDate this}}</span>
+    <span class='list-header'>Date</span>
+    <span class='list-data'>{{getJournalDate this}}</span>
 
-        <span class="list-header">Description</span>
-        <span class="list-data">{{description}}</span>
+    <span class='list-header'>Description</span>
+    <span class='list-data'>{{description}}</span>
 
-        <span class="list-header">Created by</span>
-        <span class="list-data">{{createdBy.displayName}}</span>
+    <span class='list-header'>Created by</span>
+    <span class='list-data'>{{createdBy.displayName}}</span>
 
-        <span class="list-header">Logs</span>
-        <span class="list-data">{{logs.length}}</span>
+    <span class='list-header'>Logs</span>
+    <span class='list-data'>{{logs.length}}</span>
 
-    </div>
+  </div>
 
-    {{#if logs}}
+  {{#if logs}}
 
-    <div id="journal-map" class="journal-map no-print">
+    <div id='journal-map' class='journal-map no-print'>
     </div>
 
     <h2>Logs</h2>
 
-    <div class="journal-logs-grid">
-        <span class="grid-header">#</span>
-        <span class="grid-header">Date</span>
-        <span class="grid-header">Location</span>
-        <span class="grid-header">Text</span>
-        <span class="grid-header">Log by</span>
+    <div class='journal-logs-grid'>
+      <span class='grid-header'>#</span>
+      <span class='grid-header'>Date</span>
+      <span class='grid-header'>Location</span>
+      <span class='grid-header'>Text</span>
+      <span class='grid-header'>Log by</span>
 
-       
-        {{#each logs}}
+      {{#each logs}}
 
-        <div class="grid-row-wrapper">
-            <span class="index">{{count @index 1}}</span>
-            <span class="date"><b>{{formatDate createdAt 'D.M.YYYY'}}</b>
-                {{formatDate createdAt 'HH:MM'}} </span>
-            <span class="location">
-                {{formatCoordinate coordinates.latitude 5}}° /
-                {{formatCoordinate coordinates.longitude 5}}°<br>
-                <i>{{description}}</i>
-            </span>
-            <span id="log-item-{{count @index 1}}" class="text">{{text}}</span>
-            <span class="log-by">{{createdBy.displayName}}</span>
+        <div class='grid-row-wrapper'>
+          <span class='index'>{{count @index 1}}</span>
+          <span class='date'><b>{{formatDate createdAt 'D.M.YYYY'}}</b>
+            {{formatDate createdAt 'HH:MM'}}
+          </span>
+          <span class='location'>
+            {{formatCoordinate coordinates.latitude 5}}° /
+            {{formatCoordinate coordinates.longitude 5}}°<br />
+            <i>{{description}}</i>
+          </span>
+          <span id='log-item-{{count @index 1}}' class='text'>{{text}}</span>
+          <span class='log-by'>{{createdBy.displayName}}</span>
         </div>
 
-        {{/each}}
+      {{/each}}
 
     </div>
 
-    {{/if}}
+  {{/if}}
 
 </main>
 
-<script type="module" src="/js/view-journal.js"></script>
+<script type='module' src='/js/view-journal.js'></script>
