@@ -471,6 +471,20 @@ body.login {
   margin-bottom: 30px;
 }
 
+/* LOG */
+
+.form-row-coordinates {
+  gap: 20px;
+}
+
+.get-coordinates-btn {
+  width: 100%;
+}
+
+.coordinates-container {
+  display: flex;
+}
+
 /* HELPERS */
 
 .pb-1 {
@@ -527,6 +541,38 @@ body.login {
 /* MOBILE */
 
 @media only screen and (max-width: 600px) {
+  .journals-grid {
+    grid-template-columns: initial;
+  }
+
+  .journals-grid .grid-header {
+    display: none;
+  }
+
+  .journals-grid .grid-row-wrapper .title::before {
+    content: 'Title:';
+    margin-right: 5px;
+    font-weight: bold;
+    min-width: 60px;
+    display: inline-block;
+  }
+
+  .journals-grid .grid-row-wrapper .date::before {
+    content: 'Date:';
+    margin-right: 5px;
+    font-weight: bold;
+    min-width: 60px;
+    display: inline-block;
+  }
+
+  .journals-grid .grid-row-wrapper .email::before {
+    content: 'Shared:';
+    margin-right: 5px;
+    font-weight: bold;
+    min-width: 60px;
+    display: inline-block;
+  }
+
   .journal-logs-grid {
     grid-template-columns: auto;
   }
@@ -536,6 +582,10 @@ body.login {
 
   .journal-logs-grid span.index:before {
     content: '# ';
+  }
+
+  #log-form .form-row-coordinates {
+    flex-direction: column;
   }
 }
 
