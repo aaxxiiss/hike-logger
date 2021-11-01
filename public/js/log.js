@@ -9,10 +9,8 @@ let coordinates;
 const getCoordinatesBtn = document.getElementById('get-coordinates');
 getCoordinatesBtn.addEventListener('click', getLocation);
 const logForm = document.getElementById('log-form');
-const loadingSpinner = document.getElementById('loading-spinner');
 const responseDiv = document.getElementById('log-response');
 
-loadingSpinner.style.display = 'none';
 responseDiv.style.display = 'none';
 
 function setCoordinates(pos) {
@@ -54,6 +52,12 @@ function getLocation() {
   }
 }
 
+function resetForm() {
+  responseDiv.innerHTML = '';
+  logForm.style.display = 'block';
+  logForm.reset();
+}
+
 logForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const formData = new FormData(logForm);
@@ -69,7 +73,6 @@ logForm.addEventListener('submit', (event) => {
   console.log('Submitting following data:');
   console.log(log);
 
-  loadingSpinner.style.display = '';
   logForm.style.display = 'none';
 
   fetch(LOG_API_URL, {
@@ -80,7 +83,6 @@ logForm.addEventListener('submit', (event) => {
     },
   })
     .then((response) => {
-      loadingSpinner.style.display = 'none';
       responseDiv.style.display = '';
 
       if (response.status === 422) {
@@ -93,6 +95,19 @@ logForm.addEventListener('submit', (event) => {
     })
     .then((createdLog) => {
       console.log(createdLog);
+      let successMessage = document.createElement('p');
+      successMessage.classList.add('success-message');
+      successMessage.textContent = `New log was created`;
+      let addMoreBtn = document.createElement('button');
+      addMoreBtn.type = "button";
+      addMoreBtn.id = "add-more-logs";
+      addMoreBtn.title = "Add more logs";
+      addMoreBtn.innerHTML = "Add more logs";
+      addMoreBtn.classList.add("btn", "btn-green-solid");
+      addMoreBtn.addEventListener("click", resetForm);
+      responseDiv.appendChild(successMessage);
+      responseDiv.appendChild(addMoreBtn);
+      responseDiv.classList.remove('hidden');
     })
     .catch((error) => {
       responseDiv.innerHTML = '';
@@ -100,5 +115,6 @@ logForm.addEventListener('submit', (event) => {
       errorMessage.classList.add('error-message');
       errorMessage.textContent = error;
       responseDiv.appendChild(errorMessage);
+      responseDiv.classList.remove('hidden');
     });
 });
