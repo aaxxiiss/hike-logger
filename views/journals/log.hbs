@@ -1,48 +1,91 @@
-<input type="hidden" id="journal-id" value="{{_id}}">
+<input type='hidden' id='journal-id' value='{{_id}}' />
 
 <main>
 
-    <h1>Add logs to journey</h1>
+  <h1>Add logs to journey</h1>
 
-    <div id="journal-meta"></div>
+  <div id='journal-meta'></div>
 
-    <div class="form-container">
-        <form id="log-form" action="">
-            <div class="form-row items-on-row">
-                <button type="button" id="get-coordinates" class="btn btn-green-solid mr-4 align-self-bottom">Get Coordinates</button>
-                <div class="row-item-container">
-                    <label for="lat">Latitude</label>
-                    <input id="lat" name="lat" type="text" readonly tabindex='-1' onfocus='this.blur();'>
-                </div>
-                <div class="row-item-container">
-                    <label for="lon">Longtitude</label>
-                    <input id="lon" name="lon" type="text" readonly tabindex='-1' onfocus='this.blur();'>
-                </div>
-                <div class="row-item-container">
-                    <label for="accuracy">Accuracy</label>
-                    <input id="accuracy" name="accuracy" type="text" readonly tabindex='-1' onfocus='this.blur();'>
-                </div>
-            </div>
-            <div class="form-row">
-                <label for="location-description">Description of location</label>
-                <input id="location-description" name="location-description" type="text" maxlength="60">
-            </div>
-            <div class="form-row">
-                <label for="log-text">Log text</label>
-                <textarea class="log-text" id="log-text" name="log-text" type="text" maxlength="1500"></textarea>
-            </div>
-            <div class="form-row log-submit-container">
-                <button id="log-submit" type="submit" class="btn-log-submit" disabled>Log</button>
-            </div>
-        </form>
-        <div id="loading-spinner" class="loading hidden">
-            <img src="/images/snowflake.svg" alt="" class="spinner">
+  <div class='form-container'>
+    <form id='log-form' action=''>
+      <div class='form-row items-on-row form-row-coordinates'>
+        <button
+          type='button'
+          id='get-coordinates'
+          class='btn btn-green-solid align-self-bottom get-coordinates-btn'
+        >Get Coordinates</button>
+        <div class='coordinates-container'>
+          <div class='row-item-container'>
+            <label for='lat'>Latitude</label>
+            <input
+              id='lat'
+              name='lat'
+              type='text'
+              readonly
+              tabindex='-1'
+              onfocus='this.blur();'
+            />
+          </div>
+          <div class='row-item-container'>
+            <label for='lon'>Longtitude</label>
+            <input
+              id='lon'
+              name='lon'
+              type='text'
+              readonly
+              tabindex='-1'
+              onfocus='this.blur();'
+            />
+          </div>
+          <div class='row-item-container'>
+            <label for='accuracy'>Accuracy</label>
+            <input
+              id='accuracy'
+              name='accuracy'
+              type='text'
+              readonly
+              tabindex='-1'
+              onfocus='this.blur();'
+            />
+          </div>
         </div>
-        <div id="log-response" class="log-response hidden">
-            <h2>New log added succesfully!</h2>
-        </div>
+      </div>
+      <div class='form-row'>
+        <label for='location-description'>Description of location</label>
+        <input
+          id='location-description'
+          name='location-description'
+          type='text'
+          maxlength='60'
+        />
+      </div>
+      <div class='form-row'>
+        <label for='log-text'>Log text</label>
+        <textarea
+          class='log-text'
+          id='log-text'
+          name='log-text'
+          type='text'
+          maxlength='1500'
+        ></textarea>
+      </div>
+      <div class='form-row log-submit-container'>
+        <button
+          id='log-submit'
+          type='submit'
+          class='btn-log-submit'
+          disabled
+        >Log</button>
+      </div>
+    </form>
+    <div id='loading-spinner' class='loading hidden'>
+      <img src='/images/snowflake.svg' alt='' class='spinner' />
     </div>
+    <div id='log-response' class='log-response hidden'>
+      <h2>New log added succesfully!</h2>
+    </div>
+  </div>
 
 </main>
 
-<script type="module" src="/js/log.js"></script>
+<script type='module' src='/js/log.js'></script>
